@@ -6,7 +6,7 @@
   justify-content: space-between;
 }
 .leftDivImg {
-  display: inline-flex;
+  object-fit: contain;
 }
 .logo {
   color: #fff;
@@ -111,4 +111,7 @@
 }
 .searchResultsRow img {
   height: 27px;
+}
+.sun {
+  object-fit: contain;
 }

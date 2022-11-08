@@ -4,10 +4,17 @@ import { Link } from 'react-router-dom';
 import styles from '../styles/navbar.module.css';
 import { useAuth } from '../hooks';
 import { searchUsers } from '../api';
+import { ThemeProvider } from 'styled-components';
+import { useDarkMode } from '../api/useDarkMode';
+import { lightTheme, darkTheme } from '../api/theme';
+import { GlobalStyles } from '../api/global';
+import Toggle from './Toggle';
 
 const Navbar = () => {
   const [results, setResults] = useState([]);
   const [searchText, setSearchText] = useState('');
+  const [theme, toggleTheme] = useDarkMode();
+  const themeMode = theme === 'light' ? lightTheme : darkTheme;
   const auth = useAuth();
 
   useEffect(() => {
@@ -27,6 +34,8 @@ const Navbar = () => {
   }, [searchText]);
 
   return (
+    <ThemeProvider theme={themeMode}>
+
     <div className={styles.nav}>
       <div className={styles.leftDiv}>
         <Link to="/">
@@ -106,7 +115,15 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
+
+    <div className={styles.navLinks}>
+      <GlobalStyles />
+        <Toggle theme={theme} toggleTheme={toggleTheme} />
     </div>
+
+    </div>
+    </ThemeProvider>
+
   );
 };
 

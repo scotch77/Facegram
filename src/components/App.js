@@ -33,6 +33,7 @@ function App() {
       <Router>
         <Fragment>
       <Navbar />
+  
       <Routes>
         <Route exact path="/"  element={<Home  />}>
         </Route>
